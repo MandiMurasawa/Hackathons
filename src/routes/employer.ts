@@ -95,7 +95,7 @@ employerRouter.post("/roles", (req: Request, res: Response) => {
     preferred_competencies: posting.preferred_skills,
     visa_validity: true,
     target_events,
-    discord_invite_url: posting.discord_invite_url || `https://discord.gg/mock-${slug}`,
+    discord_invite_url: posting.discord_invite_url || "https://discord.gg/3TUWQM83A",
   };
 
   addRole(role);

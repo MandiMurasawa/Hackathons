@@ -11,7 +11,7 @@
       { "name": "Asteria Group Graduate Finance Meetup", "type": "Socialization" },
       { "name": "Financial Modelling Micro-credential", "type": "Accreditation" }
     ],
-    "discord_invite_url": "https://discord.gg/mock-finance-analyst"
+    "discord_invite_url": "https://discord.gg/3TUWQM83A"
   },
   {
     "role_id": "role_apac_02",
@@ -25,7 +25,7 @@
       { "name": "APAC Operations Grad Networking Night", "type": "Socialization" },
       { "name": "APAC Trade Compliance Certificate", "type": "Accreditation" }
     ],
-    "discord_invite_url": "https://discord.gg/mock-apac-operations"
+    "discord_invite_url": "https://discord.gg/3TUWQM83A"
   },
   {
     "role_id": "role_client_03",
@@ -39,6 +39,6 @@
       { "name": "Crescent Foods Client Analytics Mixer", "type": "Socialization" },
       { "name": "Client Data Reporting Certificate", "type": "Accreditation" }
     ],
-    "discord_invite_url": "https://discord.gg/mock-client-data"
+    "discord_invite_url": "https://discord.gg/3TUWQM83A"
   }
 ]
