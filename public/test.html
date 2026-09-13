@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Zero Trust AI Action Engine - Backend Tester</title>
+<style>
+  body { font-family: system-ui, sans-serif; max-width: 720px; margin: 2rem auto; padding: 0 1rem; color: #1a1a1a; }
+  h1 { font-size: 1.3rem; }
+  fieldset { border: 1px solid #ccc; border-radius: 8px; margin-bottom: 1rem; padding: 1rem; }
+  label { display: block; font-weight: 600; margin-top: 0.75rem; margin-bottom: 0.25rem; }
+  input, select, textarea { width: 100%; padding: 0.4rem; box-sizing: border-box; font-size: 1rem; }
+  button { margin-top: 1.25rem; padding: 0.6rem 1.2rem; font-size: 1rem; cursor: pointer; }
+  #result { margin-top: 1.5rem; }
+  #status { font-weight: 600; }
+  #status.ok { color: #146c2e; }
+  #status.error { color: #b3261e; }
+  pre { background: #f4f4f4; padding: 1rem; border-radius: 8px; overflow-x: auto; }
+  .roadmap-step { border-left: 3px solid #444; padding-left: 0.75rem; margin: 0.75rem 0; }
+  .step-type { font-weight: 700; }
+</style>
+</head>
+<body>
+  <h1>Zero Trust AI Action Engine - Backend Tester</h1>
+  <p>This page sends a candidate profile to <code>POST /api/analyze</code> and shows the response. It's a throwaway tester, not the real product frontend.</p>
+
+  <form id="candidateForm">
+    <fieldset>
+      <legend>Candidate</legend>
+
+      <label for="academic_year">Academic year</label>
+      <select id="academic_year">
+        <option value="1">Year 1</option>
+        <option value="2">Year 2</option>
+        <option value="3">Year 3</option>
+        <option value="4">Year 4</option>
+      </select>
+
+      <label for="technical_skills">Technical skill</label>
+      <select id="technical_skills">
+        <option>Financial Modelling</option>
+        <option>Power BI</option>
+        <option>Advanced Excel</option>
+      </select>
+
+      <label for="language">Language</label>
+      <select id="language">
+        <option>English</option>
+        <option>Vietnamese</option>
+        <option>Mandarin</option>
+      </select>
+
+      <label for="cefr_level">CEFR level</label>
+      <input id="cefr_level" type="text" value="B2" />
+
+      <label for="dialect_context">Dialect context</label>
+      <select id="dialect_context">
+        <option>APAC Market Knowledge</option>
+        <option>Technical Financial Terminology</option>
+        <option>Client-Facing Communication</option>
+      </select>
+
+      <label for="mobility_preference">Mobility preference</label>
+      <select id="mobility_preference">
+        <option value="Regional">Regional</option>
+        <option value="Metro_APAC">Metro_APAC</option>
+        <option value="Diaspora_SME">Diaspora_SME</option>
+      </select>
+    </fieldset>
+
+    <button type="submit">Analyze</button>
+  </form>
+
+  <div id="result"></div>
+
+  <script>
+    const form = document.getElementById("candidateForm");
+    const resultEl = document.getElementById("result");
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      resultEl.innerHTML = "<p id=\"status\">Sending request...</p>";
+
+      const payload = {
+        academic_year: Number(document.getElementById("academic_year").value),
+        technical_skills: [document.getElementById("technical_skills").value],
+        language_proficiency: {
+          language: document.getElementById("language").value,
+          cefr_level: document.getElementById("cefr_level").value,
+          dialect_context: document.getElementById("dialect_context").value,
+        },
+        mobility_preference: document.getElementById("mobility_preference").value,
+      };
+
+      try {
+        const response = await fetch("/api/analyze", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+        const data = await response.json();
+
+        if (!response.ok) {
+          resultEl.innerHTML =
+            `<p id="status" class="error">Error (HTTP ${response.status})</p>` +
+            `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+          return;
+        }
+
+        const roadmapHtml = data.action_roadmap
+          .map(
+            (step) =>
+              `<div class="roadmap-step">` +
+              `<div class="step-type">${step.step_type}</div>` +
+              `<div>${step.milestone}</div>` +
+              `<div><em>${step.rationale}</em></div>` +
+              `</div>`
+          )
+          .join("");
+
+        resultEl.innerHTML =
+          `<p id="status" class="ok">Success</p>` +
+          `<p><strong>Gap score:</strong> ${data.gap_score_percentage}%</p>` +
+          `<p><strong>Cohort ID:</strong> ${data.assigned_cohort_id}</p>` +
+          `<p><strong>Discord invite:</strong> <a href="${data.discord_invite_url}" target="_blank">${data.discord_invite_url}</a></p>` +
+          `<h3>Action roadmap</h3>${roadmapHtml}` +
+          `<h3>Raw JSON</h3><pre>${JSON.stringify(data, null, 2)}</pre>`;
+      } catch (error) {
+        resultEl.innerHTML = `<p id="status" class="error">Request failed: ${error.message}</p>`;
+      }
+    });
+  </script>
+</body>
+</html>

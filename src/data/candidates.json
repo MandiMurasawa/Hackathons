@@ -1,0 +1,42 @@
+[
+  {
+    "candidate_id": "cand_1842",
+    "code": "Candidate #1842",
+    "academic_year": 3,
+    "technical_skills": ["Financial Modelling", "Power BI"],
+    "language_proficiency": { "language": "English", "cefr_level": "C1", "dialect_context": "APAC Market Knowledge" },
+    "mobility_preference": "Metro_APAC"
+  },
+  {
+    "candidate_id": "cand_1957",
+    "code": "Candidate #1957",
+    "academic_year": 4,
+    "technical_skills": ["Advanced Excel", "Financial Modelling"],
+    "language_proficiency": { "language": "Vietnamese", "cefr_level": "C2", "dialect_context": "APAC Market Knowledge" },
+    "mobility_preference": "Metro_APAC"
+  },
+  {
+    "candidate_id": "cand_2071",
+    "code": "Candidate #2071",
+    "academic_year": 3,
+    "technical_skills": ["Power BI", "Advanced Excel"],
+    "language_proficiency": { "language": "Mandarin", "cefr_level": "C1", "dialect_context": "Client-Facing Communication" },
+    "mobility_preference": "Diaspora_SME"
+  },
+  {
+    "candidate_id": "cand_2114",
+    "code": "Candidate #2114",
+    "academic_year": 2,
+    "technical_skills": ["Financial Modelling", "Advanced Excel"],
+    "language_proficiency": { "language": "English", "cefr_level": "B2", "dialect_context": "Technical Financial Terminology" },
+    "mobility_preference": "Diaspora_SME"
+  },
+  {
+    "candidate_id": "cand_2288",
+    "code": "Candidate #2288",
+    "academic_year": 3,
+    "technical_skills": ["Power BI", "Financial Modelling"],
+    "language_proficiency": { "language": "English", "cefr_level": "C1", "dialect_context": "APAC Market Knowledge" },
+    "mobility_preference": "Regional"
+  }
+]

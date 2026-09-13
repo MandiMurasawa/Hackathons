@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MentorME | Zero Trust AI Action Engine</title>
+<style>
+:root{
+ --teal:#0a8f83;--teal2:#11ad9c;--teal50:#eaf8f5;--teal100:#d8f1ed;
+ --ink:#17232d;--muted:#6d7b85;--bg:#f5f8fa;--card:#fff;
+ --line:#e3e9ed;--green:#21885c;--green50:#eaf7ef;--amber:#bf7b0f;--amber50:#fff5df;
+ --red:#c84c49;--red50:#fdeeed;--blue:#3977d5;--blue50:#edf3fd;--purple:#7857c7;--purple50:#f3effd;
+ --shadow:0 12px 34px rgba(24,54,69,.08);--r:18px
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+.hidden{display:none!important}
+.top{height:70px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 24px}
+.brand{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:900;letter-spacing:.4px}
+.brand .mark{width:36px;height:36px;border-radius:11px;background:linear-gradient(135deg,var(--teal),#5ccfc2);display:grid;place-items:center;color:#fff}
+.brand em{color:var(--teal);font-style:normal}
+.brand .sub{margin-left:10px;color:var(--muted);font-size:12px;font-weight:700}
+.main{max-width:880px;margin:0 auto;padding:32px 20px 60px}
+.page{display:none}.page.active{display:block}
+.hero{margin-bottom:22px}
+.hero h1{margin:5px 0 6px;font-size:28px;line-height:1.1}
+.hero p{margin:0;color:var(--muted);max-width:640px}
+.pill{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:6px 10px;font-size:11px;font-weight:900}
+.pill.teal{background:var(--teal50);color:var(--teal)}.pill.green{background:var(--green50);color:var(--green)}
+.pill.amber{background:var(--amber50);color:var(--amber)}.pill.blue{background:var(--blue50);color:var(--blue)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px;box-shadow:var(--shadow)}
+.field{margin-bottom:14px}.field label{display:block;font-size:12px;font-weight:850;color:#54636d;margin-bottom:6px}
+.field input,.field select,.field textarea{width:100%;border:1px solid #dce4e8;border-radius:11px;background:#fff;padding:10px 12px;outline:0}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--teal)}
+.fieldgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.btn{border:0;border-radius:11px;padding:11px 16px;font-weight:850;transition:.15s}
+.btn:hover{transform:translateY(-1px)}
+.btn:disabled{opacity:.6;cursor:default;transform:none}
+.primary{background:var(--teal);color:#fff}.primary:hover{background:#08796f}
+.ghost{background:#fff;color:#4b5b65;border:1px solid var(--line)}
+.notice{border:1px solid #f0c9c8;background:var(--red50);color:#8f3230;border-radius:12px;padding:12px 14px;font-size:13px;margin-top:14px}
+.status{margin-top:14px;color:var(--muted);font-size:13px;font-weight:700}
+.scorebox{padding:18px;border:1px solid #d6ece8;background:linear-gradient(135deg,#effaf8,#fbfdfd);border-radius:16px;display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}
+.ring{width:104px;height:104px;border-radius:50%;display:grid;place-items:center;position:relative;background:conic-gradient(var(--teal) calc(var(--p)*1%),#e9edef 0);flex:0 0 auto}
+.ring:after{content:"";position:absolute;inset:9px;border-radius:50%;background:#fff}
+.ring strong{position:relative;z-index:1;font-size:22px}
+.action{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid #edf1f3}
+.action:last-child{border-bottom:0}
+.anum{width:31px;height:31px;border-radius:9px;background:var(--teal50);color:var(--teal);display:grid;place-items:center;font-weight:900;flex:0 0 auto}
+.sectionhead{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:24px 0 14px}
+.sectionhead h2{font-size:17px;margin:0}
+.small{font-size:12px}.muted{color:var(--muted)}
+.rawjson{background:#f4f4f4;padding:14px;border-radius:12px;overflow-x:auto;font-size:12px;margin-top:24px}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="brand"><div class="mark">M</div><div>MENTOR<em>ME</em></div><div class="sub">Zero Trust AI Action Engine</div></div>
+</header>
+
+<main class="main">
+
+  <!-- INTAKE -->
+  <section class="page active" id="intake">
+    <div class="hero">
+      <span class="pill teal">Candidate intake</span>
+      <h1>See your gap score and action roadmap.</h1>
+      <p>Tell us where you are today. We'll match you against employer requirements and generate a 3-step readiness roadmap.</p>
+    </div>
+
+    <div class="card">
+      <form id="candidateForm">
+        <div class="fieldgrid">
+          <div class="field">
+            <label for="academic_year">Academic year</label>
+            <select id="academic_year">
+              <option value="1">Year 1</option>
+              <option value="2">Year 2</option>
+              <option value="3">Year 3</option>
+              <option value="4">Year 4</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="mobility_preference">Mobility preference</label>
+            <select id="mobility_preference">
+              <option value="Regional">Regional</option>
+              <option value="Metro_APAC">Metro APAC</option>
+              <option value="Diaspora_SME">Diaspora SME</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="technical_skills">Technical skill</label>
+          <select id="technical_skills">
+            <option>Financial Modelling</option>
+            <option>Power BI</option>
+            <option>Advanced Excel</option>
+          </select>
+        </div>
+
+        <div class="fieldgrid">
+          <div class="field">
+            <label for="language">Language</label>
+            <select id="language">
+              <option>English</option>
+              <option>Vietnamese</option>
+              <option>Mandarin</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="cefr_level">CEFR level</label>
+            <input id="cefr_level" type="text" value="B2">
+          </div>
+        </div>
+        <div class="field">
+          <label for="dialect_context">Dialect context</label>
+          <select id="dialect_context">
+            <option>APAC Market Knowledge</option>
+            <option>Technical Financial Terminology</option>
+            <option>Client-Facing Communication</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn primary" id="submitBtn">Analyze my profile</button>
+        <div id="intakeStatus"></div>
+      </form>
+    </div>
+  </section>
+
+  <!-- RESULTS -->
+  <section class="page" id="results">
+    <div class="hero">
+      <span class="pill teal">Your results</span>
+      <h1>Here's where you stand.</h1>
+      <p>This is a live result — generated by embedding-based gap scoring and an AI-drafted action roadmap.</p>
+    </div>
+
+    <div class="card">
+      <div class="scorebox">
+        <div>
+          <div class="small muted">Gap score</div>
+          <div class="small muted" id="cohortLine" style="margin-top:8px"></div>
+          <div style="margin-top:10px"><a id="discordLink" class="btn primary" href="#" target="_blank" rel="noopener">Join your cohort on Discord</a></div>
+        </div>
+        <div class="ring" id="scoreRing" style="--p:0"><strong id="scoreRingText">0%</strong></div>
+      </div>
+    </div>
+
+    <div class="sectionhead"><h2>Action roadmap</h2><span class="pill purple" style="background:var(--purple50);color:var(--purple)">3 steps</span></div>
+    <div class="card" id="roadmapCard"></div>
+
+    <div style="margin-top:20px">
+      <button class="btn ghost" id="backBtn">Analyze another profile</button>
+    </div>
+
+    <pre class="rawjson" id="rawJson"></pre>
+  </section>
+
+</main>
+
+<script>
+const form = document.getElementById("candidateForm");
+const submitBtn = document.getElementById("submitBtn");
+const intakeStatus = document.getElementById("intakeStatus");
+
+function showPage(id) {
+  document.querySelectorAll(".page").forEach((p) => p.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+  scrollTo({ top: 0, behavior: "smooth" });
+}
+
+document.getElementById("backBtn").addEventListener("click", () => showPage("intake"));
+
+form.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  submitBtn.disabled = true;
+  intakeStatus.innerHTML = `<div class="status">Analyzing your profile...</div>`;
+
+  const payload = {
+    academic_year: Number(document.getElementById("academic_year").value),
+    technical_skills: [document.getElementById("technical_skills").value],
+    language_proficiency: {
+      language: document.getElementById("language").value,
+      cefr_level: document.getElementById("cefr_level").value,
+      dialect_context: document.getElementById("dialect_context").value,
+    },
+    mobility_preference: document.getElementById("mobility_preference").value,
+  };
+
+  try {
+    const response = await fetch("/api/analyze", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+    const data = await response.json();
+
+    if (!response.ok) {
+      intakeStatus.innerHTML = `<div class="notice">${data.error || "Something went wrong."}</div>`;
+      return;
+    }
+
+    renderResults(data);
+    showPage("results");
+    intakeStatus.innerHTML = "";
+  } catch (error) {
+    intakeStatus.innerHTML = `<div class="notice">Request failed: ${error.message}</div>`;
+  } finally {
+    submitBtn.disabled = false;
+  }
+});
+
+function renderResults(data) {
+  document.getElementById("scoreRing").style.setProperty("--p", data.gap_score_percentage);
+  document.getElementById("scoreRingText").textContent = data.gap_score_percentage + "%";
+  document.getElementById("cohortLine").textContent = "Cohort: " + data.assigned_cohort_id;
+  document.getElementById("discordLink").href = data.discord_invite_url;
+
+  document.getElementById("roadmapCard").innerHTML = data.action_roadmap
+    .map(
+      (step, i) => `<div class="action">
+        <div class="anum">${i + 1}</div>
+        <div>
+          <span class="pill teal">${step.step_type}</span>
+          <div style="font-weight:800;margin-top:6px">${step.milestone}</div>
+          <div class="small muted" style="margin-top:4px">${step.rationale}</div>
+        </div>
+      </div>`
+    )
+    .join("");
+
+  document.getElementById("rawJson").textContent = JSON.stringify(data, null, 2);
+}
+</script>
+</body>
+</html>

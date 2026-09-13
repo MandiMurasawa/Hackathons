@@ -1,0 +1,44 @@
+[
+  {
+    "role_id": "role_finance_01",
+    "role_segment": "Metro_APAC",
+    "title": "Graduate Financial Analyst",
+    "employer": "Asteria Group",
+    "required_competencies": ["Financial Modelling", "English", "Technical Financial Terminology"],
+    "preferred_competencies": ["Power BI", "APAC Market Knowledge"],
+    "visa_validity": true,
+    "target_events": [
+      { "name": "Asteria Group Graduate Finance Meetup", "type": "Socialization" },
+      { "name": "Financial Modelling Micro-credential", "type": "Accreditation" }
+    ],
+    "discord_invite_url": "https://discord.gg/mock-finance-analyst"
+  },
+  {
+    "role_id": "role_apac_02",
+    "role_segment": "Metro_APAC",
+    "title": "APAC Operations Associate",
+    "employer": "Northstar APAC",
+    "required_competencies": ["Advanced Excel", "Vietnamese", "APAC Market Knowledge"],
+    "preferred_competencies": ["Mandarin", "Client-Facing Communication"],
+    "visa_validity": true,
+    "target_events": [
+      { "name": "APAC Operations Grad Networking Night", "type": "Socialization" },
+      { "name": "APAC Trade Compliance Certificate", "type": "Accreditation" }
+    ],
+    "discord_invite_url": "https://discord.gg/mock-apac-operations"
+  },
+  {
+    "role_id": "role_client_03",
+    "role_segment": "Diaspora_SME",
+    "title": "Client Data Analyst",
+    "employer": "Crescent Foods",
+    "required_competencies": ["Power BI", "Mandarin", "Client-Facing Communication"],
+    "preferred_competencies": ["Advanced Excel", "Financial Modelling"],
+    "visa_validity": true,
+    "target_events": [
+      { "name": "Crescent Foods Client Analytics Mixer", "type": "Socialization" },
+      { "name": "Client Data Reporting Certificate", "type": "Accreditation" }
+    ],
+    "discord_invite_url": "https://discord.gg/mock-client-data"
+  }
+]
